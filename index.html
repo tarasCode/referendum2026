@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Referendum 2026 Assistant – Techloop Srl</title>
-  <meta name="theme-color" content="#078586" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Referendum 2026" />
-  <link rel="manifest" href="/manifest.json" />
-  <link rel="icon" href="https://www.techloop.it/wp-content/uploads/2023/09/cropped-Business-Card-Techloop-2-32x32.png" sizes="32x32" />
-  <link rel="apple-touch-icon" href="https://www.techloop.it/wp-content/uploads/2023/09/cropped-Business-Card-Techloop-2-192x192.png" />
-  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta name="theme-color" content="#078586">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Referendum 2026">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="https://www.techloop.it/wp-content/uploads/2023/09/cropped-Business-Card-Techloop-2-32x32.png"
+    sizes="32x32">
+  <link rel="apple-touch-icon"
+    href="https://www.techloop.it/wp-content/uploads/2023/09/cropped-Business-Card-Techloop-2-192x192.png">
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     :root {
       --tl-primary: #078586;
       --tl-secondary: #0B4E5C;
@@ -25,216 +36,770 @@
       --tl-white: #ffffff;
       --tl-header-h: 60px;
     }
-    html, body {
-      height: 100%; overflow: hidden;
+
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--tl-light); color: var(--tl-dark);
+      background: var(--tl-light);
+      color: var(--tl-dark);
     }
-    body { display: flex; flex-direction: column; }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
     /* === HEADER === */
     .tl-header {
-      height: var(--tl-header-h); min-height: var(--tl-header-h);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 20px; background: var(--tl-white);
-      border-bottom: 3px solid var(--tl-primary); z-index: 100; gap: 12px;
+      height: var(--tl-header-h);
+      min-height: var(--tl-header-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      background: var(--tl-white);
+      border-bottom: 3px solid var(--tl-primary);
+      z-index: 100;
+      gap: 12px;
     }
-    .tl-header a.tl-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
-    .tl-header img { height: 36px; width: auto; }
+
+    .tl-header a.tl-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .tl-header img {
+      height: 36px;
+      width: auto;
+    }
+
     .tl-header-title {
-      font-size: 0.85rem; font-weight: 700; color: var(--tl-secondary);
-      letter-spacing: 0.02em; white-space: nowrap; text-align: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--tl-secondary);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      text-align: center;
     }
-    .tl-header-social { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+
+    .tl-header-social {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
     .tl-header-social a {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 32px; height: 32px; border-radius: 50%;
-      background: var(--tl-secondary); color: var(--tl-white);
-      text-decoration: none; transition: background 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--tl-secondary);
+      color: var(--tl-white);
+      text-decoration: none;
+      transition: background 0.2s;
     }
-    .tl-header-social a:hover { background: var(--tl-primary); }
-    .tl-header-social svg { width: 16px; height: 16px; fill: currentColor; }
+
+    .tl-header-social a:hover {
+      background: var(--tl-primary);
+    }
+
+    .tl-header-social svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
     /* === MAIN === */
-    .tl-main { flex: 1 1 0%; min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
+    .tl-main {
+      flex: 1 1 0%;
+      min-height: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
     #n8n-chat {
-      flex: 1 1 0%; min-height: 0; overflow: hidden; display: flex; flex-direction: column;
-      --chat--color-primary: #078586; --chat--color-primary-shade-50: #066f70;
-      --chat--color-primary-shade-100: #055a5b; --chat--color-secondary: #0B4E5C;
-      --chat--color-secondary-shade-50: #09404d; --chat--color-white: #ffffff;
-      --chat--color-light: #f4f7f8; --chat--color-light-shade-50: #dce8ea;
-      --chat--color-light-shade-100: #b8cdd1; --chat--color-medium: #c8d5d8;
-      --chat--color-dark: #1a1a2e; --chat--color-disabled: #778085;
-      --chat--color-typing: #404040; --chat--spacing: 1rem;
-      --chat--border-radius: 0.5rem; --chat--transition-duration: 0.15s;
+      flex: 1 1 0%;
+      min-height: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      --chat--color-primary: #078586;
+      --chat--color-primary-shade-50: #066f70;
+      --chat--color-primary-shade-100: #055a5b;
+      --chat--color-secondary: #0B4E5C;
+      --chat--color-secondary-shade-50: #09404d;
+      --chat--color-white: #ffffff;
+      --chat--color-light: #f4f7f8;
+      --chat--color-light-shade-50: #dce8ea;
+      --chat--color-light-shade-100: #b8cdd1;
+      --chat--color-medium: #c8d5d8;
+      --chat--color-dark: #1a1a2e;
+      --chat--color-disabled: #778085;
+      --chat--color-typing: #404040;
+      --chat--spacing: 1rem;
+      --chat--border-radius: 0.5rem;
+      --chat--transition-duration: 0.15s;
       --chat--font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      --chat--window--width: 100%; --chat--window--height: 100%;
-      --chat--window--z-index: 1; --chat--window--border: none;
-      --chat--window--border-radius: 0; --chat--window--margin-bottom: 0;
+      --chat--window--width: 100%;
+      --chat--window--height: 100%;
+      --chat--window--z-index: 1;
+      --chat--window--border: none;
+      --chat--window--border-radius: 0;
+      --chat--window--margin-bottom: 0;
       --chat--header-height: 0;
-      --chat--message--font-size: 0.95rem; --chat--message--padding: 0.85rem 1rem;
-      --chat--message--border-radius: 12px; --chat--message-line-height: 1.55;
+      --chat--message--font-size: 0.95rem;
+      --chat--message--padding: 0.85rem 1rem;
+      --chat--message--border-radius: 12px;
+      --chat--message-line-height: 1.55;
       --chat--message--margin-bottom: 0.75rem;
-      --chat--message--bot--background: #ffffff; --chat--message--bot--color: #1a1a2e;
+      --chat--message--bot--background: #ffffff;
+      --chat--message--bot--color: #1a1a2e;
       --chat--message--bot--border: 1px solid #e5eaec;
-      --chat--message--user--background: #078586; --chat--message--user--color: #ffffff;
+      --chat--message--user--background: #078586;
+      --chat--message--user--color: #ffffff;
       --chat--message--user--border: none;
       --chat--message--pre--background: rgba(7, 133, 134, 0.07);
       --chat--messages-list--padding: var(--chat--spacing);
-      --chat--textarea--height: 50px; --chat--textarea--max-height: 30rem;
-      --chat--input--font-size: 0.95rem; --chat--input--border: 0;
-      --chat--input--border-radius: 0; --chat--input--padding: 0.8rem 1rem;
-      --chat--input--background: #ffffff; --chat--input--text-color: #1a1a2e;
-      --chat--input--line-height: 1.5; --chat--input--border-active: 0;
-      --chat--button--color: #fff; --chat--button--background: #078586;
-      --chat--button--border-radius: 0.5rem; --chat--button--hover--background: #066f70;
+      --chat--textarea--height: 50px;
+      --chat--textarea--max-height: 30rem;
+      --chat--input--font-size: 0.95rem;
+      --chat--input--border: 0;
+      --chat--input--border-radius: 0;
+      --chat--input--padding: 0.8rem 1rem;
+      --chat--input--background: #ffffff;
+      --chat--input--text-color: #1a1a2e;
+      --chat--input--line-height: 1.5;
+      --chat--input--border-active: 0;
+      --chat--button--color: #fff;
+      --chat--button--background: #078586;
+      --chat--button--border-radius: 0.5rem;
+      --chat--button--hover--background: #066f70;
       --chat--input--send--button--background: transparent;
       --chat--input--send--button--color: #078586;
       --chat--input--send--button--background-hover: #078586;
       --chat--input--send--button--color-hover: #fff;
       --chat--body--background: #f4f7f8;
-      --chat--footer--background: #ffffff; --chat--footer--color: #1a1a2e;
+      --chat--footer--background: #ffffff;
+      --chat--footer--color: #1a1a2e;
     }
-    #n8n-chat * { box-sizing: border-box; }
-    #n8n-chat > div, #n8n-chat .n8n-chat-window {
-      flex: 1 1 0% !important; min-height: 0 !important;
-      display: flex !important; flex-direction: column !important;
-      overflow: hidden !important; width: 100% !important; height: 100% !important;
-      max-height: 100% !important; border-radius: 0 !important;
-      border: none !important; position: relative !important;
+
+    #n8n-chat * {
+      box-sizing: border-box;
     }
-    #n8n-chat .chat-layout, #n8n-chat .chat-body {
-      flex: 1 1 0% !important; min-height: 0 !important;
-      display: flex !important; flex-direction: column !important;
-      overflow: hidden !important; width: 100% !important;
-      max-height: 100% !important; border-radius: 0 !important; position: relative !important;
+
+    #n8n-chat>div,
+    #n8n-chat .n8n-chat-window {
+      flex: 1 1 0% !important;
+      min-height: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+      width: 100% !important;
+      height: 100% !important;
+      max-height: 100% !important;
+      border-radius: 0 !important;
+      border: none !important;
+      position: relative !important;
     }
-    #n8n-chat .chat-messages-list, #n8n-chat [class*="messages-list"], #n8n-chat [class*="messagesList"] {
-      flex: 1 1 0% !important; min-height: 0 !important; max-height: none !important;
-      overflow-y: auto !important; overflow-x: hidden !important;
-      overscroll-behavior: contain !important; -webkit-overflow-scrolling: touch !important;
+
+    #n8n-chat .chat-layout,
+    #n8n-chat .chat-body {
+      flex: 1 1 0% !important;
+      min-height: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+      width: 100% !important;
+      max-height: 100% !important;
+      border-radius: 0 !important;
+      position: relative !important;
     }
-    #n8n-chat .chat-inputs, #n8n-chat .chat-footer, #n8n-chat [class*="chat-input"] {
-      flex: 0 0 auto !important; min-height: 50px !important;
-      border-top: 1px solid #e5eaec; order: 999 !important;
+
+    #n8n-chat .chat-messages-list,
+    #n8n-chat [class*="messages-list"],
+    #n8n-chat [class*="messagesList"] {
+      flex: 1 1 0% !important;
+      min-height: 0 !important;
+      max-height: none !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      overscroll-behavior: contain !important;
+      -webkit-overflow-scrolling: touch !important;
     }
-    #n8n-chat .chat-inputs textarea { color: #1a1a2e !important; background: #fff !important; resize: none !important; }
-    #n8n-chat .chat-message { max-width: 80%; flex-shrink: 0 !important; }
+
+    #n8n-chat .chat-inputs,
+    #n8n-chat .chat-footer,
+    #n8n-chat [class*="chat-input"] {
+      flex: 0 0 auto !important;
+      min-height: 50px !important;
+      border-top: 1px solid #e5eaec;
+      order: 999 !important;
+    }
+
+    #n8n-chat .chat-inputs textarea {
+      color: #1a1a2e !important;
+      background: #fff !important;
+      resize: none !important;
+    }
+
+    #n8n-chat .chat-message {
+      max-width: 80%;
+      flex-shrink: 0 !important;
+    }
+
     #n8n-chat .chat-message.chat-message-from-user .chat-message-body,
     #n8n-chat [class*="message"][class*="user"] [class*="bubble"],
     #n8n-chat [class*="message"][class*="user"] [class*="body"],
     #n8n-chat [class*="from-user"] [class*="bubble"],
     #n8n-chat [class*="from-user"] [class*="body"],
     #n8n-chat [class*="fromUser"] [class*="bubble"],
-    #n8n-chat [class*="fromUser"] [class*="body"] { background: #078586 !important; color: #fff !important; }
+    #n8n-chat [class*="fromUser"] [class*="body"] {
+      background: #078586 !important;
+      color: #fff !important;
+    }
+
     #n8n-chat .chat-message.chat-message-from-user *,
     #n8n-chat [class*="message"][class*="user"] *,
     #n8n-chat [class*="from-user"] *,
-    #n8n-chat [class*="fromUser"] * { color: #fff !important; }
+    #n8n-chat [class*="fromUser"] * {
+      color: #fff !important;
+    }
+
     #n8n-chat .chat-message.chat-message-from-bot *,
-    #n8n-chat [class*="message"][class*="bot"] * { color: #1a1a2e !important; }
-    #n8n-chat .chat-header { display: none !important; }
-    #n8n-chat .chat-powered-by { display: none !important; }
+    #n8n-chat [class*="message"][class*="bot"] * {
+      color: #1a1a2e !important;
+    }
+
+    #n8n-chat .chat-header {
+      display: none !important;
+    }
+
+    #n8n-chat .chat-powered-by {
+      display: none !important;
+    }
+
     /* === DISCLAIMER POPUP === */
     .disclaimer-overlay {
-      position: fixed; inset: 0; z-index: 9999;
-      background: rgba(0,0,0,0.55); display: flex;
-      align-items: center; justify-content: center; padding: 20px;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
+
     .disclaimer-box {
-      background: #fff; border-radius: 16px; max-width: 440px; width: 100%;
-      max-height: 85vh; display: flex; flex-direction: column;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden;
+      background: #fff;
+      border-radius: 16px;
+      max-width: 440px;
+      width: 100%;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
     }
-    .disclaimer-body { padding: 28px 24px 16px; overflow-y: auto; flex: 1 1 auto; }
+
+    .disclaimer-body {
+      padding: 28px 24px 16px;
+      overflow-y: auto;
+      flex: 1 1 auto;
+    }
+
     .disclaimer-body h2 {
-      font-size: 1.15rem; color: var(--tl-secondary); margin-bottom: 14px;
-      display: flex; align-items: center; gap: 8px;
+      font-size: 1.15rem;
+      color: var(--tl-secondary);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .disclaimer-body h2 svg { width: 22px; height: 22px; fill: var(--tl-primary); flex-shrink: 0; }
-    .disclaimer-body p { font-size: 0.88rem; line-height: 1.6; color: #444; margin-bottom: 10px; }
-    .disclaimer-body p strong { color: var(--tl-secondary); }
-    .disclaimer-footer { padding: 14px 24px; border-top: 1px solid #eee; flex: 0 0 auto; background: #fff; }
+
+    .disclaimer-body h2 svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--tl-primary);
+      flex-shrink: 0;
+    }
+
+    .disclaimer-body p {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: #444;
+      margin-bottom: 10px;
+    }
+
+    .disclaimer-body p strong {
+      color: var(--tl-secondary);
+    }
+
+    .disclaimer-footer {
+      padding: 14px 24px;
+      border-top: 1px solid #eee;
+      flex: 0 0 auto;
+      background: #fff;
+    }
+
     .disclaimer-footer button {
-      width: 100%; padding: 12px; border: none; border-radius: 10px;
-      background: var(--tl-primary); color: #fff; font-size: 0.95rem;
-      font-weight: 600; cursor: pointer; font-family: inherit; transition: background 0.2s;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: var(--tl-primary);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
     }
-    .disclaimer-footer button:hover { background: var(--tl-secondary); }
+
+    .disclaimer-footer button:hover {
+      background: var(--tl-secondary);
+    }
+
     /* === PWA INSTALL TOAST === */
     .pwa-toast {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 9998;
-      background: var(--tl-secondary); color: #fff; padding: 16px 20px;
-      display: flex; flex-direction: column; gap: 12px; font-size: 0.85rem;
-      transform: translateY(100%); transition: transform 0.35s ease;
-      box-shadow: 0 -4px 20px rgba(0,0,0,0.25); border-radius: 16px 16px 0 0;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9998;
+      background: var(--tl-secondary);
+      color: #fff;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 0.85rem;
+      transform: translateY(100%);
+      transition: transform 0.35s ease;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
+      border-radius: 16px 16px 0 0;
     }
-    .pwa-toast.show { transform: translateY(0); }
-    .pwa-toast-top { display: flex; align-items: center; gap: 12px; }
+
+    .pwa-toast.show {
+      transform: translateY(0);
+    }
+
+    .pwa-toast-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
     .pwa-toast-icon {
-      width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
-      background: var(--tl-primary); display: flex; align-items: center; justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      background: var(--tl-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .pwa-toast-icon svg { width: 24px; height: 24px; fill: #fff; }
-    .pwa-toast-info { flex: 1; }
-    .pwa-toast-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 2px; }
-    .pwa-toast-desc { font-size: 0.8rem; opacity: 0.85; line-height: 1.4; }
+
+    .pwa-toast-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: #fff;
+    }
+
+    .pwa-toast-info {
+      flex: 1;
+    }
+
+    .pwa-toast-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 2px;
+    }
+
+    .pwa-toast-desc {
+      font-size: 0.8rem;
+      opacity: 0.85;
+      line-height: 1.4;
+    }
+
     .pwa-toast-desc .ios-share-icon {
-      display: inline-block; width: 16px; height: 16px; vertical-align: -3px; margin: 0 2px;
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      vertical-align: -3px;
+      margin: 0 2px;
     }
-    .pwa-toast-btns { display: flex; gap: 8px; }
+
+    .pwa-toast-btns {
+      display: flex;
+      gap: 8px;
+    }
+
     .pwa-toast-btns button {
-      flex: 1; padding: 10px; border: none; border-radius: 10px;
-      font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: inherit;
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
     }
-    .pwa-toast-btns .pwa-yes { background: var(--tl-primary); color: #fff; }
-    .pwa-toast-btns .pwa-no { background: rgba(255,255,255,0.15); color: #fff; }
-    .pwa-toast-btns .pwa-ok { background: var(--tl-primary); color: #fff; flex: 1; }
+
+    .pwa-toast-btns .pwa-yes {
+      background: var(--tl-primary);
+      color: #fff;
+    }
+
+    .pwa-toast-btns .pwa-no {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+
+    .pwa-toast-btns .pwa-ok {
+      background: var(--tl-primary);
+      color: #fff;
+      flex: 1;
+    }
+
     /* === MOBILE === */
     @media (max-width: 640px) {
-      :root { --tl-header-h: 54px; }
-      .tl-header { padding: 0 12px; gap: 8px; }
-      .tl-header img { height: 28px; }
-      .tl-header-title { font-size: 0.72rem; }
-      .tl-header-social a { width: 28px; height: 28px; }
-      .tl-header-social svg { width: 14px; height: 14px; }
-      .tl-header-social { gap: 6px; }
-      #n8n-chat .chat-message { max-width: 90%; }
-      .disclaimer-box { max-width: 95vw; }
+      :root {
+        --tl-header-h: 54px;
+      }
+
+      .tl-header {
+        padding: 0 12px;
+        gap: 8px;
+      }
+
+      .tl-header img {
+        height: 28px;
+      }
+
+      .tl-header-title {
+        font-size: 0.72rem;
+      }
+
+      .tl-header-social a {
+        width: 28px;
+        height: 28px;
+      }
+
+      .tl-header-social svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      .tl-header-social {
+        gap: 6px;
+      }
+
+      #n8n-chat .chat-message {
+        max-width: 90%;
+      }
+
+      .disclaimer-box {
+        max-width: 95vw;
+      }
     }
+
     @supports (padding: env(safe-area-inset-bottom)) {
-      .pwa-toast { padding-bottom: calc(16px + env(safe-area-inset-bottom)); }
+      .pwa-toast {
+        padding-bottom: calc(16px + env(safe-area-inset-bottom));
+      }
+    }
+
+    /* === BOTTOM BAR === */
+    .tl-bottom-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 6px 16px;
+      background: var(--tl-primary);
+      flex: 0 0 auto;
+    }
+
+    .tl-bottom-bar a.tl-bottom-link {
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .tl-bottom-bar a.tl-bottom-link:hover {
+      text-decoration: underline;
+    }
+
+    .tl-bottom-bar .tl-bottom-social {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tl-bottom-bar .tl-bottom-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .tl-bottom-bar .tl-bottom-social a:hover {
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .tl-bottom-bar .tl-bottom-social svg {
+      width: 13px;
+      height: 13px;
+      fill: currentColor;
     }
   </style>
 </head>
+
 <body>
   <header class="tl-header">
     <a class="tl-logo" href="https://www.techloop.it" target="_blank" rel="noopener">
-      <img src="https://www.techloop.it/wp-content/uploads/2024/03/logo-tagliato.png" alt="Techloop Srl" />
+      <img src="https://www.techloop.it/wp-content/uploads/2024/03/logo-tagliato.png" alt="Techloop Srl">
     </a>
     <span class="tl-header-title">Referendum 2026 Assistant</span>
     <div class="tl-header-social">
       <a href="https://www.linkedin.com/company/techloop-it/" target="_blank" rel="noopener" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z">
+          </path>
+        </svg>
       </a>
       <a href="https://www.instagram.com/techloop.it/" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z">
+          </path>
+        </svg>
       </a>
-      <a href="https://www.facebook.com/profile.php?id=100093591733209" target="_blank" rel="noopener" aria-label="Facebook">
-        <svg viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06 2 17.06 5.66 21.21 10.44 21.96V14.96H7.9v-2.9h2.54V9.85c0-2.52 1.49-3.93 3.78-3.93 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02z"/></svg>
+      <a href="https://www.facebook.com/profile.php?id=100093591733209" target="_blank" rel="noopener"
+        aria-label="Facebook">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M12 2.04C6.5 2.04 2 6.53 2 12.06 2 17.06 5.66 21.21 10.44 21.96V14.96H7.9v-2.9h2.54V9.85c0-2.52 1.49-3.93 3.78-3.93 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02z">
+          </path>
+        </svg>
       </a>
     </div>
   </header>
-  <main class="tl-main"><div id="n8n-chat"></div></main>
+  <main class="tl-main">
+    <div id="n8n-chat" data-v-app="">
+      <main class="chat-layout chat-wrapper n8n-chat">
+        <div class="chat-header">
+          <div class="chat-heading">
+            <h1>Referendum 2026</h1><!---->
+          </div>
+          <p>by Techloop Srl</p>
+        </div>
+        <div class="chat-body">
+          <div class="chat-messages-list">
+            <div class="chat-message chat-message-from-bot"><!---->
+              <div class="chat-message-markdown">
+                <p>Come posso aiutarti?</p>
+              </div><!---->
+            </div>
+            <div class="chat-message chat-message-from-user">
+              <div class="chat-message-actions"><!----></div>
+              <div class="chat-message-markdown">
+                <p>Se un presidente si allontana e non rientra come ci si comporta?</p>
+              </div><!---->
+            </div>
+            <div class="chat-message chat-message-from-bot">
+              <div class="chat-message-actions"><!----></div>
+              <div class="chat-message-markdown">
+                <p>Se il presidente <strong>si allontana temporaneamente</strong> dopo l’insediamento del seggio, è
+                  <strong>sostituito dal vicepresidente</strong>. Il documento precisa infatti che, in caso di
+                  <strong>assenza o impedimento temporanei</strong> del presidente sopraggiunti nel corso delle
+                  operazioni elettorali, subentra il vicepresidente. Inoltre, <strong>presidente o vicepresidente devono
+                    essere sempre presenti</strong> e <strong>almeno tre membri dell’ufficio</strong>, fra i quali il
+                  presidente o il vicepresidente, devono trovarsi sempre presenti a tutte le operazioni.<br>
+                  Cfr. <strong>Capitolo 3, paragrafo 3.1 - Funzioni del vicepresidente</strong>; <strong>art. 19, primo
+                    comma, legge n. 352/1970</strong>; <strong>artt. 40, secondo comma, e 66, secondo comma, T.U. n.
+                    361/1957</strong>.
+                </p>
+                <p>Se invece il presidente <strong>non rientra perché sopravviene un impedimento</strong> tale da non
+                  consentire la normale sostituzione, il testo prevede che <strong>assume la presidenza il sindaco o un
+                    suo delegato</strong>, sia se l’impedimento interviene prima dell’insediamento sia se interviene
+                  <strong>dopo l’insediamento del seggio e nel corso delle operazioni elettorali</strong>.<br>
+                  Cfr. <strong>Capitolo 2, paragrafo 2.1 - Nomina e sostituzione del presidente</strong>; <strong>art.
+                    19, primo comma, legge n. 352/1970</strong>; <strong>artt. 35, commi primo e quinto, e 40, secondo
+                    comma, T.U. n. 361/1957</strong>.
+                </p>
+                <p>Il documento aggiunge anche che <strong>la legge non prevede il caso</strong> in cui il presidente
+                  originariamente nominato, poi sostituito per improvviso impedimento dal sindaco o da un suo delegato,
+                  <strong>si ripresenti successivamente</strong> nel corso delle operazioni.<br>
+                  Cfr. <strong>Capitolo 2, paragrafo 2.1 - Nomina e sostituzione del presidente</strong>.
+                </p>
+              </div><!---->
+            </div>
+            <div class="chat-message chat-message-from-user">
+              <div class="chat-message-actions"><!----></div>
+              <div class="chat-message-markdown">
+                <p>ma quindi il sindaco può prendere il suo posto?</p>
+              </div><!---->
+            </div>
+            <div class="chat-message chat-message-from-bot">
+              <div class="chat-message-actions"><!----></div>
+              <div class="chat-message-markdown">
+                <p>Sì, <strong>ma solo in un caso specifico</strong>.</p>
+                <ul>
+                  <li>
+                    <p><strong>Se vi è un improvviso impedimento del presidente</strong> che <strong>non consenta la
+                        normale sostituzione</strong>, il <strong>sindaco o un suo delegato assume la presidenza del
+                        seggio</strong>, sia:</p>
+                    <ul>
+                      <li><strong>prima dell’insediamento del seggio</strong>;</li>
+                      <li>sia <strong>dopo l’insediamento del seggio e nel corso delle operazioni
+                          elettorali</strong>.<br>
+                        Cfr. <strong>Capitolo 2, paragrafo 2.1 - Nomina e sostituzione del presidente</strong>;
+                        <strong>art. 19, primo comma, legge n. 352/1970</strong>; <strong>artt. 35, commi primo e
+                          quinto, e 40, secondo comma, T.U. n. 361/1957</strong>.
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <p><strong>Se invece si tratta di assenza o impedimento temporanei</strong> sopraggiunti
+                      <strong>dopo l’insediamento del seggio e nel corso delle operazioni</strong>, il presidente
+                      <strong>è sostituito dal vicepresidente</strong>, non dal sindaco.<br>
+                      Cfr. <strong>Capitolo 3, paragrafo 3.1 - Funzioni del vicepresidente</strong>; <strong>art. 19,
+                        primo comma, legge n. 352/1970</strong>; <strong>artt. 40, secondo comma, e 66, secondo comma,
+                        T.U. n. 361/1957</strong>.
+                    </p>
+                  </li>
+                </ul>
+                <p>Il discrimine, quindi, è questo:</p>
+                <ul>
+                  <li><strong>assenza temporanea</strong> → <strong>vicepresidente</strong>;</li>
+                  <li><strong>improvviso impedimento che non consente la normale sostituzione</strong> → <strong>sindaco
+                      o suo delegato</strong>.</li>
+                </ul>
+              </div><!---->
+            </div>
+            <div class="chat-message chat-message-from-user">
+              <div class="chat-message-actions"><!----></div>
+              <div class="chat-message-markdown">
+                <p>mi sintetizzi tutti questi concetti?</p>
+              </div><!---->
+            </div>
+            <div class="chat-message chat-message-from-bot">
+              <div class="chat-message-actions"><!----></div>
+              <div class="chat-message-markdown">
+                <p>Certamente. In sintesi:</p>
+                <ul>
+                  <li>
+                    <p><strong>Se il presidente si assenta temporaneamente</strong> dopo l’insediamento del seggio,
+                      <strong>lo sostituisce il vicepresidente</strong>.<br>
+                      Cfr. <strong>Capitolo 3, paragrafo 3.1 - Funzioni del vicepresidente</strong>; <strong>art. 19,
+                        primo comma, legge n. 352/1970</strong>; <strong>artt. 40, secondo comma, e 66, secondo comma,
+                        T.U. n. 361/1957</strong>.
+                    </p>
+                  </li>
+                  <li>
+                    <p><strong>Presidente o vicepresidente devono essere sempre presenti</strong> durante tutte le
+                      operazioni del seggio.<br>
+                      Cfr. <strong>Capitolo 3, paragrafo 3.1</strong>.</p>
+                  </li>
+                  <li>
+                    <p><strong>Se vi è un improvviso impedimento del presidente</strong> che <strong>non consente la
+                        normale sostituzione</strong>, <strong>assume la presidenza il sindaco o un suo
+                        delegato</strong>, sia:</p>
+                    <ul>
+                      <li>prima dell’insediamento del seggio;</li>
+                      <li>sia dopo l’insediamento, nel corso delle operazioni elettorali.<br>
+                        Cfr. <strong>Capitolo 2, paragrafo 2.1 - Nomina e sostituzione del presidente</strong>;
+                        <strong>art. 19, primo comma, legge n. 352/1970</strong>; <strong>artt. 35, commi primo e
+                          quinto, e 40, secondo comma, T.U. n. 361/1957</strong>.
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <p>Quindi:</p>
+                    <ul>
+                      <li><strong>assenza o impedimento temporanei</strong> → <strong>vicepresidente</strong>;</li>
+                      <li><strong>improvviso impedimento non surrogabile normalmente</strong> → <strong>sindaco o suo
+                          delegato</strong>.</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <p>Il testo precisa inoltre che <strong>la legge non disciplina espressamente</strong> il caso in
+                      cui il presidente originariamente nominato, già sostituito dal sindaco o da un suo delegato per
+                      improvviso impedimento, <strong>si ripresenti successivamente</strong> nel corso delle
+                      operazioni.<br>
+                      Cfr. <strong>Capitolo 2, paragrafo 2.1</strong>.</p>
+                  </li>
+                </ul>
+              </div><!---->
+            </div><!---->
+          </div>
+        </div>
+        <div class="chat-footer">
+          <div data-v-b72880b9="" class="chat-input" style="--controls-count: 1;">
+            <div data-v-b72880b9="" class="chat-inputs"><!----><textarea data-v-b72880b9="" data-test-id="chat-input"
+                placeholder="Inserisci la tua richiesta..." style="height: 50px;"></textarea>
+              <div data-v-b72880b9="" class="chat-inputs-controls"><!----><button data-v-b72880b9="" disabled=""
+                  class="chat-input-send-button"><svg data-v-b72880b9="" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="currentColor" d="m2 21l21-9L2 3v7l15 2l-15 2z"></path>
+                  </svg></button></div>
+            </div><!---->
+          </div>
+        </div>
+      </main>
+    </div>
+  </main>
+  <!-- BOTTOM BAR -->
+  <div class="tl-bottom-bar">
+    <a class="tl-bottom-link" href="https://www.techloop.it" target="_blank" rel="noopener">Techloop Srl</a>
+    <div class="tl-bottom-social">
+      <a href="https://www.linkedin.com/company/techloop-it/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path></svg>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=100093591733209" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06 2 17.06 5.66 21.21 10.44 21.96V14.96H7.9v-2.9h2.54V9.85c0-2.52 1.49-3.93 3.78-3.93 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02z"></path></svg>
+      </a>
+      <a href="https://www.instagram.com/techloop.it/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg>
+      </a>
+    </div>
+  </div>
   <!-- DISCLAIMER POPUP -->
   <div class="disclaimer-overlay" id="disclaimer" style="display:none;">
     <div class="disclaimer-box">
       <div class="disclaimer-body">
         <h2>
-          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z">
+            </path>
+          </svg>
           Avviso importante
         </h2>
         <p>Stai per utilizzare un <strong>assistente basato su Intelligenza Artificiale</strong>.</p>
-        <p>Le risposte fornite sono generate automaticamente e <strong>potrebbero contenere errori o imprecisioni</strong>. Ti invitiamo a verificare sempre le informazioni ricevute.</p>
-        <p>Il sistema di AI è stato addestrato con le informazioni presenti nel documento <strong>&ldquo;Pubblicazione n. 2 &ndash; Istruzioni per le operazioni degli uffici di sezione&rdquo;</strong> messo a disposizione dal <strong>Ministero dell&rsquo;Interno</strong>.</p>
+        <p>Le risposte fornite sono generate automaticamente e <strong>potrebbero contenere errori o
+            imprecisioni</strong>. Ti invitiamo a verificare sempre le informazioni ricevute.</p>
+        <p>Il sistema di AI è stato addestrato con le informazioni presenti nel documento <strong>“Pubblicazione n. 2 –
+            Istruzioni per le operazioni degli uffici di sezione”</strong> messo a disposizione dal <strong>Ministero
+            dell’Interno</strong>.</p>
       </div>
       <div class="disclaimer-footer">
         <button id="disclaimerAccept">Accetta</button>
@@ -245,26 +810,41 @@
   <!-- PWA INSTALL TOAST (content set dynamically by JS) -->
   <div class="pwa-toast" id="pwaToast"></div>
   <script>
+    /* === DYNAMIC LOGO (city subdomain) === */
+    (function () {
+      var host = window.location.hostname; // e.g. taranto.referendum2026.eu
+      var parts = host.split('.');
+      // If there's a subdomain and it's not "www", swap the logo
+      if (parts.length >= 3 && parts[0] !== 'www') {
+        var city = parts[0].toLowerCase();
+        var logoImg = document.querySelector('.tl-logo img');
+        if (logoImg) {
+          logoImg.src = '/immagini/' + city + '.svg';
+          logoImg.alt = city.charAt(0).toUpperCase() + city.slice(1);
+        }
+      }
+    })();
+
     /* === DISCLAIMER === */
-    (function() {
+    (function () {
       if (!localStorage.getItem('ref2026_disclaimer_accepted')) {
         document.getElementById('disclaimer').style.display = 'flex';
       }
-      document.getElementById('disclaimerAccept').addEventListener('click', function() {
+      document.getElementById('disclaimerAccept').addEventListener('click', function () {
         localStorage.setItem('ref2026_disclaimer_accepted', '1');
         document.getElementById('disclaimer').style.display = 'none';
       });
     })();
 
     /* === SMART PWA INSTALL PROMPT === */
-    (function() {
+    (function () {
       var toast = document.getElementById('pwaToast');
       var dismissed = localStorage.getItem('ref2026_pwa_dismissed');
       if (dismissed) return;
 
       /* Already running as installed PWA? Skip. */
       var isStandalone = window.matchMedia('(display-mode: standalone)').matches
-                      || window.navigator.standalone === true;
+        || window.navigator.standalone === true;
       if (isStandalone) return;
 
       var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
@@ -278,8 +858,8 @@
         /* Wait for disclaimer to be accepted first */
         function tryShow() {
           if (document.getElementById('disclaimer').style.display === 'none' ||
-              localStorage.getItem('ref2026_disclaimer_accepted')) {
-            setTimeout(function() { toast.classList.add('show'); }, 800);
+            localStorage.getItem('ref2026_disclaimer_accepted')) {
+            setTimeout(function () { toast.classList.add('show'); }, 800);
           } else {
             setTimeout(tryShow, 500);
           }
@@ -295,11 +875,11 @@
         /* iOS: Show instructions to use Safari Share > Add to Home Screen */
         showToast(
           '<div class="pwa-toast-top">' +
-            '<div class="pwa-toast-icon"><svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg></div>' +
-            '<div class="pwa-toast-info">' +
-              '<div class="pwa-toast-title">Installa l\'app</div>' +
-              '<div class="pwa-toast-desc">Tocca ' + iosShareSvg + ' in basso, poi scorri e seleziona <strong>&ldquo;Aggiungi alla schermata Home&rdquo;</strong></div>' +
-            '</div>' +
+          '<div class="pwa-toast-icon"><svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg></div>' +
+          '<div class="pwa-toast-info">' +
+          '<div class="pwa-toast-title">Installa l\'app</div>' +
+          '<div class="pwa-toast-desc">Tocca ' + iosShareSvg + ' in basso, poi scorri e seleziona <strong>&ldquo;Aggiungi alla schermata Home&rdquo;</strong></div>' +
+          '</div>' +
           '</div>' +
           '<div class="pwa-toast-btns"><button class="pwa-ok" id="pwaOk">Ho capito</button></div>'
         );
@@ -307,27 +887,27 @@
 
       } else {
         /* Android / Desktop Chrome: use beforeinstallprompt */
-        window.addEventListener('beforeinstallprompt', function(e) {
+        window.addEventListener('beforeinstallprompt', function (e) {
           e.preventDefault();
           deferredPrompt = e;
           showToast(
             '<div class="pwa-toast-top">' +
-              '<div class="pwa-toast-icon"><svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg></div>' +
-              '<div class="pwa-toast-info">' +
-                '<div class="pwa-toast-title">Installa l\'app</div>' +
-                '<div class="pwa-toast-desc">Aggiungi Referendum 2026 alla schermata Home per un accesso rapido.</div>' +
-              '</div>' +
+            '<div class="pwa-toast-icon"><svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg></div>' +
+            '<div class="pwa-toast-info">' +
+            '<div class="pwa-toast-title">Installa l\'app</div>' +
+            '<div class="pwa-toast-desc">Aggiungi Referendum 2026 alla schermata Home per un accesso rapido.</div>' +
+            '</div>' +
             '</div>' +
             '<div class="pwa-toast-btns">' +
-              '<button class="pwa-no" id="pwaNo">No grazie</button>' +
-              '<button class="pwa-yes" id="pwaYes">Installa</button>' +
+            '<button class="pwa-no" id="pwaNo">No grazie</button>' +
+            '<button class="pwa-yes" id="pwaYes">Installa</button>' +
             '</div>'
           );
-          document.getElementById('pwaYes').addEventListener('click', function() {
+          document.getElementById('pwaYes').addEventListener('click', function () {
             toast.classList.remove('show');
             if (deferredPrompt) {
               deferredPrompt.prompt();
-              deferredPrompt.userChoice.then(function() { deferredPrompt = null; });
+              deferredPrompt.userChoice.then(function () { deferredPrompt = null; });
             }
             localStorage.setItem('ref2026_pwa_dismissed', '1');
           });
@@ -336,15 +916,15 @@
 
         /* Fallback for Android browsers that don't fire beforeinstallprompt (Samsung, Firefox) */
         if (isAndroid) {
-          setTimeout(function() {
+          setTimeout(function () {
             if (!deferredPrompt && !localStorage.getItem('ref2026_pwa_dismissed')) {
               showToast(
                 '<div class="pwa-toast-top">' +
-                  '<div class="pwa-toast-icon"><svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg></div>' +
-                  '<div class="pwa-toast-info">' +
-                    '<div class="pwa-toast-title">Installa l\'app</div>' +
-                    '<div class="pwa-toast-desc">Apri il menu del browser (&#8942;) e seleziona <strong>&ldquo;Aggiungi a schermata Home&rdquo;</strong></div>' +
-                  '</div>' +
+                '<div class="pwa-toast-icon"><svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg></div>' +
+                '<div class="pwa-toast-info">' +
+                '<div class="pwa-toast-title">Installa l\'app</div>' +
+                '<div class="pwa-toast-desc">Apri il menu del browser (&#8942;) e seleziona <strong>&ldquo;Aggiungi a schermata Home&rdquo;</strong></div>' +
+                '</div>' +
                 '</div>' +
                 '<div class="pwa-toast-btns"><button class="pwa-ok" id="pwaOk2">Ho capito</button></div>'
               );
@@ -357,7 +937,7 @@
 
     /* === SERVICE WORKER === */
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(function() {});
+      navigator.serviceWorker.register('/sw.js').catch(function () { });
     }
   </script>
   <script type="module">
@@ -380,13 +960,18 @@
       metadata: { siteName: 'Techloop', site: 'https://www.techloop.it' },
       showWelcomeScreen: false, defaultLanguage: 'en',
       initialMessages: ['Come posso aiutarti?'],
-      i18n: { en: {
-        title: 'Referendum 2026', subtitle: 'by Techloop Srl', footer: '',
-        getStarted: 'Nuova conversazione',
-        inputPlaceholder: 'Inserisci la tua richiesta...'
-      }},
+      i18n: {
+        en: {
+          title: 'Referendum 2026', subtitle: 'by Techloop Srl', footer: '',
+          getStarted: 'Nuova conversazione',
+          inputPlaceholder: 'Inserisci la tua richiesta...'
+        }
+      },
       enableStreaming: false
     });
   </script>
+
+
 </body>
+
 </html>
