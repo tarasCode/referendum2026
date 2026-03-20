@@ -750,13 +750,17 @@
       }
       return _orig.apply(this, arguments);
     };
+    // Detect city from subdomain
+    var _parts = window.location.hostname.split('.');
+    var _comune = (_parts.length >= 3 && _parts[0] !== 'www') ? _parts[0].toLowerCase() : 'techloop';
+
     createChat({
       webhookUrl: 'https://fabiomarchitelli.northeurope.cloudapp.azure.com/webhook/26797546-992d-45a1-b9b3-d27b143a0a2f/chat',
       webhookConfig: { method: 'POST' },
       target: '#n8n-chat', mode: 'fullscreen',
       chatInputKey: 'chatInput', chatSessionKey: 'sessionId',
       loadPreviousSession: true,
-      metadata: { siteName: 'Techloop', site: 'https://www.techloop.it' },
+      metadata: { siteName: 'Techloop', site: 'https://www.techloop.it', comune: _comune },
       showWelcomeScreen: false, defaultLanguage: 'en',
       initialMessages: ['Benvenuto! Sono l\'assistente AI per il Referendum 2026. Posso aiutarti con informazioni sulle operazioni degli uffici di sezione, le procedure di voto e molto altro. Come posso esserti d\'aiuto?'],
       i18n: {
