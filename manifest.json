@@ -1,0 +1,22 @@
+{
+  "name": "Referendum 2026 Assistant",
+  "short_name": "Referendum2026",
+  "description": "Assistente AI per il Referendum 2026 - by Techloop Srl",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f7f8",
+  "theme_color": "#078586",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://www.techloop.it/wp-content/uploads/2023/09/cropped-Business-Card-Techloop-2-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://www.techloop.it/wp-content/uploads/2023/09/cropped-Business-Card-Techloop-2-192x192.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
