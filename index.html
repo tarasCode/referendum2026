@@ -751,11 +751,31 @@
       // If there's a subdomain and it's not "www", swap the logo
       if (parts.length >= 3 && parts[0] !== 'www') {
         var city = parts[0].toLowerCase();
+        var cityImg = '/immagini/' + city + '.png';
+        var cityName = city.charAt(0).toUpperCase() + city.slice(1);
+
+        // Swap header logo
         var logoImg = document.querySelector('.tl-logo img');
         if (logoImg) {
-          logoImg.src = '/immagini/' + city + '.png';
-          logoImg.alt = city.charAt(0).toUpperCase() + city.slice(1);
+          logoImg.src = cityImg;
+          logoImg.alt = cityName;
         }
+
+        // Swap favicon
+        var favicon = document.querySelector('link[rel="icon"]');
+        if (favicon) {
+          favicon.href = cityImg;
+          favicon.removeAttribute('sizes');
+        }
+
+        // Swap apple-touch-icon
+        var touchIcon = document.querySelector('link[rel="apple-touch-icon"]');
+        if (touchIcon) {
+          touchIcon.href = cityImg;
+        }
+
+        // Update page title
+        document.title = 'Referendum 2026 Assistant – Comune di ' + cityName;
       }
     })();
 
