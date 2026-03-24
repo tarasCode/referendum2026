@@ -20,7 +20,6 @@
     sizes="32x32">
   <link rel="apple-touch-icon"
     href="https://www.techloop.it/wp-content/uploads/2023/09/cropped-Business-Card-Techloop-2-192x192.png">
-  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
@@ -100,6 +99,68 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+    }
+
+    /* === THANK YOU PAGE === */
+    .tl-thankyou {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      text-align: center;
+      background: var(--tl-light);
+    }
+
+    .tl-thankyou-icon svg {
+      width: 72px;
+      height: 72px;
+      fill: var(--tl-primary);
+      margin-bottom: 20px;
+    }
+
+    .tl-thankyou h1 {
+      font-size: 2rem;
+      color: var(--tl-secondary);
+      margin-bottom: 16px;
+    }
+
+    .tl-thankyou p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #444;
+      max-width: 500px;
+      margin-bottom: 14px;
+    }
+
+    .tl-thankyou p strong {
+      color: var(--tl-secondary);
+    }
+
+    .tl-thankyou .tl-thankyou-stats {
+      background: var(--tl-white);
+      border: 2px solid var(--tl-primary);
+      border-radius: 12px;
+      padding: 18px 24px;
+      margin: 20px 0;
+      font-size: 1.1rem;
+    }
+
+    .tl-thankyou .tl-thankyou-credits {
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 10px;
+    }
+
+    .tl-thankyou .tl-thankyou-credits a {
+      color: var(--tl-primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .tl-thankyou .tl-thankyou-credits a:hover {
+      text-decoration: underline;
     }
 
     #n8n-chat {
@@ -545,7 +606,15 @@
     <span class="tl-header-title">Referendum 2026 Assistant</span>
   </header>
   <main class="tl-main">
-    <div id="n8n-chat"></div>
+    <div class="tl-thankyou">
+      <div class="tl-thankyou-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+      </div>
+      <h1>Grazie!</h1>
+      <p class="tl-thankyou-main">Il servizio <strong>Referendum 2026 Assistant</strong> si è concluso.</p>
+      <p class="tl-thankyou-stats">Siamo orgogliosi di aver supportato gli operatori dei seggi con oltre <strong>500 risposte</strong> ai quesiti posti durante le operazioni referendarie.</p>
+      <p class="tl-thankyou-credits">Un ringraziamento a tutti coloro che hanno utilizzato questo strumento. Il servizio è stato realizzato da <a href="https://www.techloop.it" target="_blank" rel="noopener">Techloop Srl</a>.</p>
+    </div>
   </main>
   <!-- BOTTOM BAR -->
   <div class="tl-bottom-bar">
@@ -562,216 +631,29 @@
       </a>
     </div>
   </div>
-  <!-- DISCLAIMER POPUP -->
-  <div class="disclaimer-overlay" id="disclaimer" style="display:none;">
-    <div class="disclaimer-box">
-      <div class="disclaimer-body">
-        <h2>
-          <svg viewBox="0 0 24 24">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z">
-            </path>
-          </svg>
-          Avviso importante
-        </h2>
-        <p>Stai per utilizzare un <strong>assistente basato su Intelligenza Artificiale</strong>.</p>
-        <p>Le risposte fornite sono generate automaticamente e <strong>potrebbero contenere errori o
-            imprecisioni</strong>. Ti invitiamo a verificare sempre le informazioni ricevute.</p>
-        <p>Il sistema di AI è stato addestrato con le informazioni presenti nel documento <strong>“Pubblicazione n. 2 –
-            Istruzioni per le operazioni degli uffici di sezione”</strong> messo a disposizione dal <strong>Ministero
-            dell’Interno</strong>.</p>
-      </div>
-      <div class="disclaimer-footer">
-        <button id="disclaimerAccept">Accetta</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- PWA INSTALL TOAST (content set dynamically by JS) -->
-  <div class="pwa-toast" id="pwaToast"></div>
   <script>
     /* === DYNAMIC LOGO (city subdomain) === */
     (function () {
-      var host = window.location.hostname; // e.g. taranto.referendum2026.eu
+      var host = window.location.hostname;
       var parts = host.split('.');
-      // If there's a subdomain and it's not "www", swap the logo
       if (parts.length >= 3 && parts[0] !== 'www') {
         var city = parts[0].toLowerCase();
         var cityImg = '/immagini/' + city + '.png';
         var cityName = city.charAt(0).toUpperCase() + city.slice(1);
 
-        // Swap header logo
         var logoImg = document.querySelector('.tl-logo img');
-        if (logoImg) {
-          logoImg.src = cityImg;
-          logoImg.alt = cityName;
-        }
+        if (logoImg) { logoImg.src = cityImg; logoImg.alt = cityName; }
 
-        // Swap favicon
         var favicon = document.querySelector('link[rel="icon"]');
-        if (favicon) {
-          favicon.href = cityImg;
-          favicon.removeAttribute('sizes');
-        }
+        if (favicon) { favicon.href = cityImg; favicon.removeAttribute('sizes'); }
 
-        // Swap apple-touch-icon
         var touchIcon = document.querySelector('link[rel="apple-touch-icon"]');
-        if (touchIcon) {
-          touchIcon.href = cityImg;
-        }
+        if (touchIcon) { touchIcon.href = cityImg; }
 
-        // Update page title
         document.title = 'Referendum 2026 Assistant – Comune di ' + cityName;
       }
     })();
 
-    /* === DISCLAIMER === */
-    (function () {
-      if (!localStorage.getItem('ref2026_disclaimer_accepted')) {
-        document.getElementById('disclaimer').style.display = 'flex';
-      }
-      document.getElementById('disclaimerAccept').addEventListener('click', function () {
-        localStorage.setItem('ref2026_disclaimer_accepted', '1');
-        document.getElementById('disclaimer').style.display = 'none';
-      });
-    })();
-
-    /* === SMART PWA INSTALL PROMPT === */
-    (function () {
-      var toast = document.getElementById('pwaToast');
-      var dismissed = localStorage.getItem('ref2026_pwa_dismissed');
-      if (dismissed) return;
-
-      /* Already running as installed PWA? Skip. */
-      var isStandalone = window.matchMedia('(display-mode: standalone)').matches
-        || window.navigator.standalone === true;
-      if (isStandalone) return;
-
-      var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-      var isAndroid = /Android/.test(navigator.userAgent);
-      var deferredPrompt = null;
-      /* iOS share icon (the square-with-arrow-up) */
-      var iosShareSvg = '<svg class="ios-share-icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>';
-
-      function showToast(html) {
-        toast.innerHTML = html;
-        /* Wait for disclaimer to be accepted first */
-        function tryShow() {
-          if (document.getElementById('disclaimer').style.display === 'none' ||
-            localStorage.getItem('ref2026_disclaimer_accepted')) {
-            setTimeout(function () { toast.classList.add('show'); }, 800);
-          } else {
-            setTimeout(tryShow, 500);
-          }
-        }
-        tryShow();
-      }
-
-      function dismissToast() {
-        toast.classList.remove('show');
-        localStorage.setItem('ref2026_pwa_dismissed', '1');
-      }
-      if (isIOS) {
-        /* iOS: Show instructions to use Safari Share > Add to Home Screen */
-        showToast(
-          '<div class="pwa-toast-top">' +
-          '<div class="pwa-toast-icon"><svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg></div>' +
-          '<div class="pwa-toast-info">' +
-          '<div class="pwa-toast-title">Installa l\'app</div>' +
-          '<div class="pwa-toast-desc">Tocca ' + iosShareSvg + ' in basso, poi scorri e seleziona <strong>&ldquo;Aggiungi alla schermata Home&rdquo;</strong></div>' +
-          '</div>' +
-          '</div>' +
-          '<div class="pwa-toast-btns"><button class="pwa-ok" id="pwaOk">Ho capito</button></div>'
-        );
-        document.getElementById('pwaOk').addEventListener('click', dismissToast);
-
-      } else {
-        /* Android / Desktop Chrome: use beforeinstallprompt */
-        window.addEventListener('beforeinstallprompt', function (e) {
-          e.preventDefault();
-          deferredPrompt = e;
-          showToast(
-            '<div class="pwa-toast-top">' +
-            '<div class="pwa-toast-icon"><svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg></div>' +
-            '<div class="pwa-toast-info">' +
-            '<div class="pwa-toast-title">Installa l\'app</div>' +
-            '<div class="pwa-toast-desc">Aggiungi Referendum 2026 alla schermata Home per un accesso rapido.</div>' +
-            '</div>' +
-            '</div>' +
-            '<div class="pwa-toast-btns">' +
-            '<button class="pwa-no" id="pwaNo">No grazie</button>' +
-            '<button class="pwa-yes" id="pwaYes">Installa</button>' +
-            '</div>'
-          );
-          document.getElementById('pwaYes').addEventListener('click', function () {
-            toast.classList.remove('show');
-            if (deferredPrompt) {
-              deferredPrompt.prompt();
-              deferredPrompt.userChoice.then(function () { deferredPrompt = null; });
-            }
-            localStorage.setItem('ref2026_pwa_dismissed', '1');
-          });
-          document.getElementById('pwaNo').addEventListener('click', dismissToast);
-        });
-
-        /* Fallback for Android browsers that don't fire beforeinstallprompt (Samsung, Firefox) */
-        if (isAndroid) {
-          setTimeout(function () {
-            if (!deferredPrompt && !localStorage.getItem('ref2026_pwa_dismissed')) {
-              showToast(
-                '<div class="pwa-toast-top">' +
-                '<div class="pwa-toast-icon"><svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg></div>' +
-                '<div class="pwa-toast-info">' +
-                '<div class="pwa-toast-title">Installa l\'app</div>' +
-                '<div class="pwa-toast-desc">Apri il menu del browser (&#8942;) e seleziona <strong>&ldquo;Aggiungi a schermata Home&rdquo;</strong></div>' +
-                '</div>' +
-                '</div>' +
-                '<div class="pwa-toast-btns"><button class="pwa-ok" id="pwaOk2">Ho capito</button></div>'
-              );
-              document.getElementById('pwaOk2').addEventListener('click', dismissToast);
-            }
-          }, 3000);
-        }
-      }
-    })();
-
-    /* === SERVICE WORKER === */
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(function () { });
-    }
-  </script>
-  <script type="module">
-    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
-    var _orig = Element.prototype.scrollIntoView;
-    Element.prototype.scrollIntoView = function () {
-      var chat = document.getElementById('n8n-chat');
-      if (chat && chat.contains(this)) {
-        var s = chat.querySelector('.chat-messages-list, [class*="messages-list"], [class*="messagesList"]');
-        if (s) { s.scrollTop = s.scrollHeight; return; }
-      }
-      return _orig.apply(this, arguments);
-    };
-    // Detect city from subdomain
-    var _parts = window.location.hostname.split('.');
-    var _comune = (_parts.length >= 3 && _parts[0] !== 'www') ? _parts[0].toLowerCase() : 'techloop';
-
-    createChat({
-      webhookUrl: 'https://fabiomarchitelli.northeurope.cloudapp.azure.com/webhook/26797546-992d-45a1-b9b3-d27b143a0a2f/chat',
-      webhookConfig: { method: 'POST' },
-      target: '#n8n-chat', mode: 'fullscreen',
-      chatInputKey: 'chatInput', chatSessionKey: 'sessionId',
-      loadPreviousSession: true,
-      metadata: { siteName: 'Techloop', site: 'https://www.techloop.it', comune: _comune },
-      showWelcomeScreen: false, defaultLanguage: 'en',
-      initialMessages: ['Benvenuto! Sono l\'assistente AI per il Referendum 2026. Posso aiutarti con informazioni sulle operazioni degli uffici di sezione, le procedure di voto e molto altro. Come posso esserti d\'aiuto?\n\n**Nota bene:** le risposte dell\'Assistente AI per il Referendum 2026 hanno valore di mero supporto e devono essere sempre verificate dall\'utente. Fa fede esclusivamente il manuale delle istruzioni del Ministero dell\'Interno.'],
-      i18n: {
-        en: {
-          title: 'Referendum 2026', subtitle: 'by Techloop Srl', footer: '',
-          getStarted: 'Nuova conversazione',
-          inputPlaceholder: 'Inserisci la tua richiesta...'
-        }
-      },
-      enableStreaming: false
-    });
   </script>
 
 
