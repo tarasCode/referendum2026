@@ -20,6 +20,7 @@
     sizes="32x32">
   <link rel="apple-touch-icon"
     href="https://www.techloop.it/wp-content/uploads/2023/09/cropped-Business-Card-Techloop-2-192x192.png">
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
@@ -606,16 +607,26 @@
     <span class="tl-header-title">Referendum 2026 Assistant</span>
   </header>
   <main class="tl-main">
-    <div class="tl-thankyou">
-      <div class="tl-thankyou-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
-      </div>
-      <h1>Grazie!</h1>
-      <p class="tl-thankyou-main">Il servizio <strong>Referendum 2026 Assistant</strong> si è concluso.</p>
-      <p class="tl-thankyou-stats">Siamo orgogliosi di aver supportato gli operatori dei seggi con oltre <strong>500 risposte</strong> ai quesiti posti durante le operazioni referendarie.</p>
-      <p class="tl-thankyou-credits">Un ringraziamento a tutti coloro che hanno utilizzato questo strumento. Il servizio è stato realizzato da <a href="https://www.techloop.it" target="_blank" rel="noopener">Techloop Srl</a>.</p>
-    </div>
+    <div id="n8n-chat"></div>
   </main>
+  <!-- DISCLAIMER POPUP -->
+  <div class="disclaimer-overlay" id="disclaimerOverlay">
+    <div class="disclaimer-box">
+      <div class="disclaimer-body">
+        <h2>
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+          Avviso importante
+        </h2>
+        <p>Le risposte dell'<strong>Assistente AI per il Referendum 2026</strong> hanno valore di mero supporto informativo e devono essere sempre verificate dall'utente.</p>
+        <p>Fa fede esclusivamente il <strong>manuale delle istruzioni del Ministero dell'Interno</strong>.</p>
+      </div>
+      <div class="disclaimer-footer">
+        <button id="disclaimerAccept">Ho capito, procedi</button>
+      </div>
+    </div>
+  </div>
+  <!-- PWA TOAST -->
+  <div class="pwa-toast" id="pwaToast"></div>
   <!-- BOTTOM BAR -->
   <div class="tl-bottom-bar">
     <a class="tl-bottom-link" href="https://www.techloop.it" target="_blank" rel="noopener">Techloop Srl</a>
@@ -653,10 +664,95 @@
         document.title = 'Referendum 2026 Assistant – Comune di ' + cityName;
       }
     })();
-
   </script>
-
-
+  <!-- DISCLAIMER -->
+  <script>
+    (function () {
+      var overlay = document.getElementById('disclaimerOverlay');
+      var btn = document.getElementById('disclaimerAccept');
+      if (localStorage.getItem('referendum2026_disclaimer') === 'accepted') {
+        overlay.style.display = 'none';
+      }
+      btn.addEventListener('click', function () {
+        localStorage.setItem('referendum2026_disclaimer', 'accepted');
+        overlay.style.display = 'none';
+      });
+    })();
+  </script>
+  <!-- PWA INSTALL PROMPT -->
+  <script>
+    (function () {
+      var toast = document.getElementById('pwaToast');
+      var KEY = 'referendum2026_pwa_dismissed';
+      if (localStorage.getItem(KEY)) return;
+      var isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
+      var isAndroid = /android/i.test(navigator.userAgent);
+      var isStandalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+      if (isStandalone) return;
+      var deferredPrompt = null;
+      window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferredPrompt = e; });
+      setTimeout(function () {
+        if (isIos) {
+          toast.innerHTML =
+            '<div class="pwa-toast-top">' +
+            '<div class="pwa-toast-icon"><svg viewBox="0 0 24 24"><path d="M17 1.01 7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg></div>' +
+            '<div class="pwa-toast-info"><div class="pwa-toast-title">Installa l\'app</div>' +
+            '<div class="pwa-toast-desc">Tocca <svg class="ios-share-icon" viewBox="0 0 24 24" fill="#fff"><path d="M16 5l-1.42 1.42-1.59-1.59V16h-1.98V4.83L9.42 6.42 8 5l4-4 4 4zm4 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3a2 2 0 0 1 2 2z"/></svg> poi "Aggiungi a Home"</div></div></div>' +
+            '<div class="pwa-toast-btns"><button class="pwa-ok" id="pwaOk">OK</button></div>';
+          toast.classList.add('show');
+          document.getElementById('pwaOk').onclick = function () { localStorage.setItem(KEY, '1'); toast.classList.remove('show'); };
+        } else if (isAndroid || deferredPrompt) {
+          toast.innerHTML =
+            '<div class="pwa-toast-top">' +
+            '<div class="pwa-toast-icon"><svg viewBox="0 0 24 24"><path d="M17 1.01 7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg></div>' +
+            '<div class="pwa-toast-info"><div class="pwa-toast-title">Installa l\'app</div>' +
+            '<div class="pwa-toast-desc">Aggiungi Referendum 2026 alla schermata home per un accesso rapido.</div></div></div>' +
+            '<div class="pwa-toast-btns"><button class="pwa-no" id="pwaNo">No grazie</button><button class="pwa-yes" id="pwaYes">Installa</button></div>';
+          toast.classList.add('show');
+          document.getElementById('pwaNo').onclick = function () { localStorage.setItem(KEY, '1'); toast.classList.remove('show'); };
+          document.getElementById('pwaYes').onclick = function () {
+            localStorage.setItem(KEY, '1'); toast.classList.remove('show');
+            if (deferredPrompt) { deferredPrompt.prompt(); deferredPrompt = null; }
+          };
+        }
+      }, 3000);
+    })();
+  </script>
+  <!-- SERVICE WORKER -->
+  <script>
+    if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js').catch(function () { }); }
+  </script>
+  <!-- N8N CHAT -->
+  <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+    var _parts = window.location.hostname.split('.');
+    var _comune = (_parts.length >= 3 && _parts[0] !== 'www') ? _parts[0].toLowerCase() : 'techloop';
+    createChat({
+      webhookUrl: 'https://fabiomarchitelli.northeurope.cloudapp.azure.com/webhook/26797546-992d-45a1-b9b3-d27b143a0a2f/chat',
+      webhookConfig: { method: 'POST' },
+      target: '#n8n-chat',
+      mode: 'fullscreen',
+      chatInputKey: 'chatInput',
+      chatSessionKey: 'sessionId',
+      loadPreviousSession: true,
+      metadata: { siteName: 'Techloop', site: 'https://www.techloop.it', comune: _comune },
+      showWelcomeScreen: false,
+      defaultLanguage: 'en',
+      initialMessages: [
+        'Benvenuto! Sono l\'assistente AI per il Referendum 2026. Chiedimi qualsiasi cosa riguardo le operazioni degli uffici elettorali di sezione, lo scrutinio e le procedure referendarie.\n\n**Nota bene:** le risposte dell\'Assistente AI per il Referendum 2026 hanno valore di mero supporto e devono essere sempre verificate dall\'utente. Fa fede esclusivamente il manuale delle istruzioni del Ministero dell\'Interno.'
+      ],
+      i18n: {
+        en: {
+          title: 'Referendum 2026',
+          subtitle: 'by Techloop Srl',
+          footer: '',
+          getStarted: 'Nuova conversazione',
+          inputPlaceholder: 'Inserisci la tua richiesta...'
+        }
+      },
+      enableStreaming: false
+    });
+  </script>
 </body>
 
 </html>
